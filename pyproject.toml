@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=60", "setuptools_scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zproject"
+dynamic = ["version"]
+description = "Innerverz Python project template"
+authors = [
+  { name = "Kiyoon Kim" },
+]
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.10"
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+keywords = ["development", "template", "innerverz"]
+dependencies = [
+  "coloredlogs >= 15.0.1",
+  "verboselogs >= 1.7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black >= 23.9.0",
+]
+test = [
+  "pytest >= 7.4.0",
+  "pytest-cov >= 4.1.0",
+  "tox >= 4.11.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/innerverz-ai/python-project-template-2023"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+write_to = "src/zproject/_version.py"
+
+[tool.pytest.ini_options]
+addopts = "--cov=zproject"
+testpaths = [
+  "tests",
+]
+
+[tool.ruff]
+target-version = "py310"

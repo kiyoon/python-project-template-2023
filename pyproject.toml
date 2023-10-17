@@ -60,3 +60,8 @@ line-length = 120
 
 # E402: Module level import not at top of file
 ignore = ["E402"]
+
+[tool.coverage.report]
+omit = [
+  "src/zproject/_version.py",
+]

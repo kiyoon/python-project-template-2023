@@ -51,6 +51,28 @@ testpaths = [
   "tests",
 ]
 
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+minversion = 4.0
+envlist = python3.10, python3.11, python3.12
+isolated_build = true
+
+[gh-actions]
+python =
+    3.10: python3.10
+    3.11: python3.11
+    3.12: python3.12
+
+[testenv]
+setenv =
+    PYTHONPATH = {toxinidir}
+deps =
+    -r{toxinidir}/requirements_dev.txt
+commands =
+    pytest --basetemp={envtmpdir}
+"""
+
 [tool.ruff]
 target-version = "py310"
 

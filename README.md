@@ -38,7 +38,9 @@
 3. 어떤 issue를 fix하는지 쓰기 (예: Fixes #1) -> accept되면 자동으로 issue 닫힘
 4. pull request는 다른 팀원이 간략히 코드 리뷰하고 squash 혹은 rebase하면 됨. merge는 웬만하면 피하기.
 
-또한, release에서 새 버전 생성 가능
+더 엄격하게 하고 싶으면, 깃헙 프로젝트 세팅에서 main branch protection 및 merge 못하게 할 수 있음.
+
+또한, 어느 정도 stable한 버전이다 싶으면 release에서 새 버전 생성 가능.
 
 ## 템플릿 사용하기
 

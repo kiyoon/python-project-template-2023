@@ -1,6 +1,14 @@
 [build-system]
-requires = ["setuptools>=60", "setuptools_scm>=8.0"]
+requires = ["setuptools>=60", "versioneer[toml]==0.29"]
 build-backend = "setuptools.build_meta"
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "src/zproject/_version.py"
+versionfile_build = "zproject/_version.py"
+tag_prefix = "v"
+parentdir_prefix = "zproject-"
 
 [project]
 name = "zproject"
@@ -41,9 +49,6 @@ test = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools_scm]
-write_to = "src/zproject/_version.py"
 
 [tool.pytest.ini_options]
 addopts = "--cov=zproject"

@@ -17,11 +17,13 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
 ]
 keywords = ["development", "template", "innerverz"]
 dependencies = [
   "coloredlogs >= 15.0.1",
   "verboselogs >= 1.7",
+  "rich >= 13.6.0",
 ]
 
 [project.optional-dependencies]
@@ -51,3 +53,10 @@ testpaths = [
 
 [tool.ruff]
 target-version = "py310"
+
+# Black will enforce line length to be 88, except for docstrings and comments.
+# We set it to 120 so we have more space for docstrings and comments.
+line-length = 120
+
+# E402: Module level import not at top of file
+ignore = ["E402"]

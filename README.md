@@ -16,18 +16,19 @@
 3. `pip install -e .[dev]` (다른방법: `pip install -r requirements_dev.txt` 으로 pytest 등 개발자용 패키지도 설치가능
 4. `pytest` 커맨드로 테스트 실행해보기.
 5. `tox` 커맨드로 테스트 여러 환경에서 실행해볼수도 있음. 엄청 중요한건 아님 (github action 쉽게 쓰기 위함이 더 목적임)
+6. `import zproject; print(zproject.__version__)` 해보면 `0.1.0+4.g75bbed7.dirty` 이런식으로 나옴.
+  a. 0.1.0 버전 이후 4개의 커밋이란 뜻. 그리고 커밋되지 않은 수정사항이 있는 상태이면 dirty버전임.
 
 ## 파일 설명
 
 1. `.github` 폴더: 깃헙 액션 및 Issues 템플릿을 정의합니다.
 2. `src/zproject` 폴더: `import zproject` 해서 사용할 수 있는 함수나 클래스 등을 정의합니다.
   a. 모델, 데이터셋 등
-3. `src/zproject/_version.py`: `setuptools-scm`에서 자동 생성되는 버전정보 파일. git 트래킹하지 않습니다.
-4. `tools/` 폴더: import 하지 않고 바로 실행 가능한 파일들. (예: train.py)
-5. `tests/` 폴더: `pytest` 실행시 실행되는 함수들
-6. `pyproject.toml`: 파이썬 프로젝트 일반 정보. `pip install -e .`으로 설치할 때 설치되는 dependencies는 물론, ruff등 외부 툴의 설정도 포함합니다.
-7. `requirements.txt`: 혹시 모를 dependency 오류를 방지하기 위해 현재 사용중인 static version 작성. `pyproject.toml`과 얼추 비슷해야함.
-8. `requirements_dev.txt`: 프로그램 사용자가 아닌 개발자에게 필요한 dependencies. `pyproject.toml`과 얼추 비슷해야함.
+3. `tools/` 폴더: import 하지 않고 바로 실행 가능한 파일들. (예: train.py)
+4. `tests/` 폴더: `pytest` 실행시 실행되는 함수들
+5. `pyproject.toml`: 파이썬 프로젝트 일반 정보. `pip install -e .`으로 설치할 때 설치되는 dependencies는 물론, ruff등 외부 툴의 설정도 포함합니다.
+6. `requirements.txt`: 혹시 모를 dependency 오류를 방지하기 위해 현재 사용중인 static version 작성. `pyproject.toml`과 얼추 비슷해야함.
+7. `requirements_dev.txt`: 프로그램 사용자가 아닌 개발자에게 필요한 dependencies. `pyproject.toml`과 얼추 비슷해야함.
 
 ## Github 사용법
 

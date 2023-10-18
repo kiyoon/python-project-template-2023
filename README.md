@@ -50,7 +50,10 @@
 
 더 엄격하게 하고 싶으면, 깃헙 프로젝트 세팅에서 main branch protection 및 merge 못하게 할 수 있음.
 
-또한, 어느 정도 stable한 버전이다 싶으면 release에서 새 버전 생성 가능.
+### 새 버전 Release
+어느 정도 stable한 버전이다 싶으면 release에서 새 버전 생성 가능. 내용은 비우고 tag로 버전 이름만 적으면 됨.
+
+`.github/workflows.deploy.yml`에 있는 대로, 새로운 버전 태그가 생기면 자동 release 및 `CHANGELOG.md` 생성이 됨.
 
 ## 템플릿 사용하기
 

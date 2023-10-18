@@ -18,6 +18,7 @@ jobs:
         uses: requarks/changelog-action@v1
         with:
           includeInvalidCommits: true
+          excludeTypes: build,docs,style
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
 

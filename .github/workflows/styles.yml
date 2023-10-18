@@ -23,4 +23,5 @@ jobs:
       - name: Check isort
         uses: isort/isort-action@v1
         with:
+            isort-version: "5.12.0"
             requirements-files: "requirements.txt requirements_dev.txt"

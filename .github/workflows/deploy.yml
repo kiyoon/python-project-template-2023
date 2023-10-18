@@ -17,13 +17,13 @@ jobs:
         id: changelog
         uses: requarks/changelog-action@v1
         with:
+          includeInvalidCommits: true
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
-          includeInvalidCommits: true
           allowUpdates: true
           draft: false
           makeLatest: true

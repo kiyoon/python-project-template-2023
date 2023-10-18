@@ -54,4 +54,4 @@
 
 ## 템플릿 사용하기
 
-`pyproject.toml`, `requirements.txt` 등 바꿔서 쓰면 됨. 이름 `zproject`인거 전부 새 패키지 이름으로 치환해 쓰기.
+`pyproject.toml`, `requirements.txt` 등 바꿔서 쓰면 됨. 이름 `zproject`인거 전부 새 패키지 이름으로 치환해 쓰기

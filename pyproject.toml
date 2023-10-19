@@ -78,6 +78,9 @@ commands =
     pytest --basetemp={envtmpdir}
 """
 
+[tool.isort]
+profile = "black"
+
 [tool.ruff]
 target-version = "py310"
 

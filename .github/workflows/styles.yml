@@ -16,12 +16,34 @@ jobs:
           version: '~= 23.9.1'
 
   isort:
-      name: isort
-      runs-on: ubuntu-latest
-      steps:
+    name: isort
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v3
-      - name: Check isort
-        uses: isort/isort-action@v1
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-            isort-version: "5.12.0"
-            requirements-files: "requirements.txt requirements_dev.txt"
+          python-version: 3.11
+      - name: Install isort and requirements
+        run: |
+          pip3 install isort==5.12.0  # NOTE: requirements_dev.txt may install isort with another version
+          pip3 install -r requirements.txt -r requirements_dev.txt
+      - name: Run isort
+        run: |
+          set +e  # Do not exit shell on isort failure
+          out=$(isort --check-only --diff . 2> isort_stderr.txt)
+          exit_code=$?
+          err=$(<isort_stderr.txt)
+
+          # Display the raw output in the step
+          echo "${out}"
+          echo "${err}"
+
+          # Display the Markdown output in the job summary
+          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "${out}" >> $GITHUB_STEP_SUMMARY
+          echo "${err}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+          # Exit with the exit-code returned by isort
+          exit ${exit_code}

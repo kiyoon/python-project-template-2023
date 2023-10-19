@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check black
-        uses: psf/black@stable
+        uses: psf/black@23.9.1
         with:
           options: '--check --verbose'
           src: '.'

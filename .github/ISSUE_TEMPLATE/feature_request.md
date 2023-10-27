@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: 기능 추가 요청
 about: Suggest an idea for this project
 title: ''
 labels: enhancement
@@ -7,14 +7,13 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**겪고 계신 문제를 설명해 주세요 :)**
+[...] 할때 항상 [...] 문제가 있습니다.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**원하시는 솔루션을 설명해 주세요 :)**
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**다른 대안을 고려해 보셨다면 설명해 주세요 :)**
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**사용하고 계시는 프로그램의 버전을 적어주세요 :)**
+
+**기타 내용을 적어주세요 :)**

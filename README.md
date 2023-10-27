@@ -58,3 +58,5 @@
 ## 템플릿 사용하기
 
 `pyproject.toml`, `requirements.txt` 등 바꿔서 쓰면 됨. 이름 `zproject`인거 전부 새 패키지 이름으로 치환해 쓰기
+
+README.md에 있는 badge들 URL (python-project-template-2023 -> 새 주소) 바꾸어 주어야 제대로 테스트 결과가 뜸.

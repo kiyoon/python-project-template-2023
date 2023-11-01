@@ -57,6 +57,16 @@
 
 ## 템플릿 사용하기
 
-`pyproject.toml`, `requirements.txt` 등 바꿔서 쓰면 됨. 이름 `zproject`인거 전부 새 패키지 이름으로 치환해 쓰기
+1. `src/zproject` 폴더 이름 원하는 걸로 바꾸기 (`import zproject` 할 때 이름)
+2. `pyproject.toml`에 바꿔야하는 부분 주석 되어있음. 바꿔 쓰기
+3. `requirements.txt`에는 fixed version을 적고, `pyproject.toml`의 패키지들은 dynamic version으로 하기
+4. `README.md`에 있는 badge들 URL (python-project-template-2023 -> 새 주소) 바꾸어 주어야 제대로 테스트 결과가 뜸.
+5. `.github` 폴더, `setup.py`는 그대로 복사해 두면 됨
+6. `tests/conftest.py` 내용 전부 지우고, `tests/test_add.py`에는 아래처럼 아무것도 안하는 함수 하나만 두기
 
-README.md에 있는 badge들 URL (python-project-template-2023 -> 새 주소) 바꾸어 주어야 제대로 테스트 결과가 뜸.
+```python
+# 이름이 test_ 로 시작해야 하는 것으로 알고 있습니다
+def test_pass():
+    pass
+```
+

@@ -27,10 +27,9 @@ if __name__ == "__main__":
     so the file stream cannot be more verbose (lower level) than the console stream.
     """
     logging.basicConfig(
-        format='',
-        datefmt="%Y/%m/%d %H:%M:%S",
+        format="",
         level=logging.NOTSET,
-        stream=open(os.devnull, 'w'),
+        stream=open(os.devnull, "w"),
     )
 
     # If you want to suppress logs from other modules, set their level to WARNING or higher
@@ -42,13 +41,17 @@ if __name__ == "__main__":
         show_level=True,
         show_path=True,
     )
-    console_format = logging.Formatter("%(name)s - %(message)s")
+    console_format = logging.Formatter(
+        fmt="%(name)s - %(message)s",
+        datefmt="%m/%d %H:%M:%S",
+    )
     console_handler.setFormatter(console_format)
 
     f_handler = logging.FileHandler(log_path)
     f_handler.setLevel(logging.DEBUG)
     f_format = logging.Formatter(
-        "%(asctime)s - %(name)s: %(lineno)4d - %(levelname)s - %(message)s"
+        fmt="%(asctime)s - %(name)s: %(lineno)4d - %(levelname)s - %(message)s",
+        datefmt="%y/%m/%d %H:%M:%S",
     )
     f_handler.setFormatter(f_format)
 

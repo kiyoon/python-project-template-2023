@@ -29,8 +29,6 @@ classifiers = [
 ]
 keywords = ["development", "template", "innerverz"]
 dependencies = [
-  "coloredlogs >= 15.0.1",
-  "verboselogs >= 1.7",
   "rich >= 13.6.0",
   # ADD MORE LATER (torch, torchvision, ...)
 ]

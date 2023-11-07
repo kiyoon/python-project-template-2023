@@ -72,6 +72,7 @@ python =
 setenv =
     PYTHONPATH = {toxinidir}
 deps =
+    -r{toxinidir}/requirements.txt
     -r{toxinidir}/requirements_dev.txt
 commands =
     pytest --basetemp={envtmpdir}
@@ -81,7 +82,7 @@ commands =
 profile = "black"
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 
 # Black will enforce line length to be 88, except for docstrings and comments.
 # We set it to 120 so we have more space for docstrings and comments.

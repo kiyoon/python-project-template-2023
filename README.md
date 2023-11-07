@@ -65,6 +65,10 @@
 6. `tests/conftest.py` 내용 전부 지우고, `tests/test_add.py`에는 아래처럼 아무것도 안하는 함수 하나만 두기
 
 ```python
+# 모듈을 import 해야 테스트 에러가 나지 않습니다.
+import zproject
+
+
 # 이름이 test_ 로 시작해야 하는 것으로 알고 있습니다
 def test_pass():
     pass

@@ -15,8 +15,8 @@
 
 **주요 기능**
 
-1. Github Actions로 black (formatter), isort (formatter), ruff (linter), pytest (test) 통과 여부 확인
-2. pytest / tox 커맨드 사용 가능
+1. Github Actions로 black (formatter), isort (formatter), ruff (linter), pytest (unit test) 통과 여부 확인
+2. pytest 커맨드로 유닛 테스트 사용 가능
 
 ## 돌려 보기
 
@@ -24,7 +24,6 @@
 2. `python tools/color_logging_main.py` 실행해보기. 로깅 내용은 `train.log` 파일에도 기록됨 (저장 위치는 알아서 변경해 쓰기)
 3. `pip install -e .[dev]` (다른방법: `pip install -r requirements_dev.txt` 으로 pytest 등 개발자용 패키지도 설치가능
 4. `pytest` 커맨드로 테스트 실행해보기.
-5. `tox` 커맨드로 테스트 여러 환경에서 실행해볼수도 있음. 엄청 중요한건 아님 (github action 쉽게 쓰기 위함이 더 목적임)
 6. `import zproject; print(zproject.__version__)` 해보면 `0.1.0+4.g75bbed7.dirty` 이런식으로 나옴.  
   a. 0.1.0 버전 이후 4개의 커밋이란 뜻. 그리고 커밋되지 않은 수정사항이 있는 상태이면 dirty버전임.
 
@@ -62,15 +61,4 @@
 3. `requirements.txt`에는 fixed version을 적고, `pyproject.toml`의 패키지들은 dynamic version으로 하기
 4. `README.md`에 있는 badge들 URL (python-project-template-2023 -> 새 주소) 바꾸어 주어야 제대로 테스트 결과가 뜸.
 5. `.github` 폴더, `setup.py`는 그대로 복사해 두면 됨
-6. `tests/conftest.py` 내용 전부 지우고, `tests/test_add.py`에는 아래처럼 아무것도 안하는 함수 하나만 두기
-
-```python
-# 모듈을 import 해야 테스트 에러가 나지 않습니다.
-import zproject
-
-
-# 이름이 test_ 로 시작해야 하는 것으로 알고 있습니다
-def test_pass():
-    pass
-```
-
+6. 테스트를 작성하지 않은 경우, `tests/` 폴더 안의 파일 전부 삭제하면 GitHub Actions에서 테스트 통과됨.

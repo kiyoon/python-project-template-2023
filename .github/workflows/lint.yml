@@ -21,7 +21,8 @@ jobs:
 
           echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
           nonzero_exit=0
-          for file in ${{ steps.changed-python-files.outputs.all_changed_files }}; do
+          files=$(find . -type f -name "*.py" | sort)
+          while read file; do
             out=$(ruff check "$file" 2> ruff_stderr.txt)
             exit_code=$?
             err=$(<ruff_stderr.txt)
@@ -54,7 +55,7 @@ jobs:
               echo "${err}"
               echo "${err}" >> $GITHUB_STEP_SUMMARY
             fi
-          done
+          done <<< "$files"
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
           # Exit with the first non-zero exit-code returned by ruff

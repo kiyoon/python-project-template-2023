@@ -1,0 +1,150 @@
+name: Style check on changed files
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # ------------------------------------------------------------------------------------------------------------------------------------------------
+  # Event `pull_request`: Compare the last commit of the main branch or last remote commit of the PR branch -> to the current commit of a PR branch.
+  # ------------------------------------------------------------------------------------------------------------------------------------------------
+  black-only-changed:
+    name: black-only-changed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get all changed python files
+        id: changed-python-files
+        uses: tj-actions/changed-files@v40
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+             **.py
+
+      - name: Set up Python 3.11
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install black and requirements
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        run: |
+          pip3 install black==23.9.1
+      - name: Run black
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        run: |
+          set +e  # Do not exit shell on black failure
+          out=$(black --check --diff ${{ steps.changed-python-files.outputs.all_changed_files }} 2> black_stderr.txt)
+          exit_code=$?
+          err=$(<black_stderr.txt)
+
+          # Display the raw output in the step
+          echo "${out}"
+          echo "${err}"
+
+          # Display the Markdown output in the job summary
+          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "${out}" >> $GITHUB_STEP_SUMMARY
+          echo "${err}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+          # Exit with the exit-code returned by black
+          exit ${exit_code}
+
+  isort-only-changed:
+    name: isort-only-changed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get all changed python files
+        id: changed-python-files
+        uses: tj-actions/changed-files@v40
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+             **.py
+
+      - name: Set up Python 3.11
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install isort and requirements
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        run: |
+          pip3 install isort==5.12.0  # NOTE: requirements_dev.txt may install isort with another version
+          pip3 install -r requirements.txt -r requirements_dev.txt
+      - name: Run isort
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        run: |
+          set +e  # Do not exit shell on isort failure
+          out=$(isort --check-only --diff ${{ steps.changed-python-files.outputs.all_changed_files }} 2> isort_stderr.txt)
+          exit_code=$?
+          err=$(<isort_stderr.txt)
+
+          # Display the raw output in the step
+          echo "${out}"
+          echo "${err}"
+
+          # Display the Markdown output in the job summary
+          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "${out}" >> $GITHUB_STEP_SUMMARY
+          echo "${err}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+          # Exit with the exit-code returned by isort
+          exit ${exit_code}
+
+  ruff-only-changed:
+    name: ruff-only-changed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get all changed python files
+        id: changed-python-files
+        uses: tj-actions/changed-files@v40
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+             **.py
+
+      - name: Set up Python 3.11
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install ruff and requirements
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        run: |
+          pip3 install ruff==0.1.0
+      - name: Run ruff 
+        if: steps.changed-python-files.outputs.any_changed == 'true'
+        run: |
+          set +e  # Do not exit shell on ruff failure
+          out=$(ruff check ${{ steps.changed-python-files.outputs.all_changed_files }} 2> ruff_stderr.txt)
+          exit_code=$?
+          err=$(<ruff_stderr.txt)
+
+          # Display the raw output in the step
+          echo "${out}"
+          echo "${err}"
+
+          # Display the Markdown output in the job summary
+          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "${out}" >> $GITHUB_STEP_SUMMARY
+          echo "${err}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+          # Exit with the exit-code returned by ruff
+          exit ${exit_code}
+

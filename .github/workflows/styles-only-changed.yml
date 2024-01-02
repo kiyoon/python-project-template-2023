@@ -1,19 +1,18 @@
 name: Style check on changed files
 
-on:
-  pull_request
+on: pull_request
 
 jobs:
   # ------------------------------------------------------------------------------------------------------------------------------------------------
   # Event `pull_request`: Compare the last commit of the main branch or last remote commit of the PR branch -> to the current commit of a PR branch.
   # ------------------------------------------------------------------------------------------------------------------------------------------------
   black-only-changed:
-    name: Black
+    name: Black-changed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+          fetch-depth: 0 # OR "2" -> To retrieve the preceding commit.
 
       - name: Get all changed python files
         id: changed-python-files
@@ -21,7 +20,7 @@ jobs:
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
-             **.py
+            **.py
 
       - name: Set up Python 3.11
         if: steps.changed-python-files.outputs.any_changed == 'true'
@@ -54,12 +53,12 @@ jobs:
           exit ${exit_code}
 
   isort-only-changed:
-    name: isort
+    name: isort-changed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+          fetch-depth: 0 # OR "2" -> To retrieve the preceding commit.
 
       - name: Get all changed python files
         id: changed-python-files
@@ -67,7 +66,7 @@ jobs:
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
-             **.py
+            **.py
 
       - name: Set up Python 3.11
         if: steps.changed-python-files.outputs.any_changed == 'true'
@@ -101,12 +100,12 @@ jobs:
           exit ${exit_code}
 
   ruff-only-changed:
-    name: ruff
+    name: ruff-changed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+          fetch-depth: 0 # OR "2" -> To retrieve the preceding commit.
 
       - name: Get all changed python files
         id: changed-python-files
@@ -114,7 +113,7 @@ jobs:
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
-             **.py
+            **.py
 
       - name: Set up Python 3.11
         if: steps.changed-python-files.outputs.any_changed == 'true'
@@ -125,7 +124,7 @@ jobs:
         if: steps.changed-python-files.outputs.any_changed == 'true'
         run: |
           pip3 install ruff==0.1.0
-      - name: Run ruff 
+      - name: Run ruff
         if: steps.changed-python-files.outputs.any_changed == 'true'
         run: |
           set +e  # Do not exit shell on ruff failure
@@ -171,4 +170,3 @@ jobs:
           # Exit with the first non-zero exit-code returned by ruff
           # or just zero if all passed
           exit ${nonzero_exit}
-

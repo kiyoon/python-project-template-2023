@@ -44,7 +44,7 @@ jobs:
           echo "${err}"
 
           # Display the Markdown output in the job summary
-          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
           echo "${out}" >> $GITHUB_STEP_SUMMARY
           echo "${err}" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
@@ -77,7 +77,13 @@ jobs:
         if: steps.changed-python-files.outputs.any_changed == 'true'
         run: |
           pip3 install isort==5.12.0  # NOTE: requirements_dev.txt may install isort with another version
-          pip3 install -r requirements.txt -r requirements_dev.txt
+
+          # Make sure you don't install torch as it's slow
+          # We just need to put those in pyproject.toml -> [tools.isort] -> known_third_party option.
+          pip install -r <(cat requirements.txt | grep -v -e ^torch== -e ^torchvision== -e ^accelerate== \
+              -e '^nvidia-.*-cu.*==' -e ^xformers==)
+          pip install -r <(cat requirements_dev.txt | grep -v -e ^torch== -e ^torchvision== -e ^accelerate== \
+              -e '^nvidia-.*-cu.*==' -e ^xformers==)
       - name: Run isort
         if: steps.changed-python-files.outputs.any_changed == 'true'
         run: |
@@ -91,7 +97,7 @@ jobs:
           echo "${err}"
 
           # Display the Markdown output in the job summary
-          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
           echo "${out}" >> $GITHUB_STEP_SUMMARY
           echo "${err}" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
@@ -129,7 +135,6 @@ jobs:
         run: |
           set +e  # Do not exit shell on ruff failure
 
-          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
           nonzero_exit=0
           for file in ${{ steps.changed-python-files.outputs.all_changed_files }}; do
             out=$(ruff check "$file" 2> ruff_stderr.txt)
@@ -144,11 +149,15 @@ jobs:
               # Display the raw output in the step
               echo "${out}"
               # Display the Markdown output in the job summary
+              echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
               echo "${out}" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
             fi
             if [[ -n "$err" ]]; then
               echo "${err}"
+              echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
               echo "${err}" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
             fi
 
             out=$(ruff check --diff "$file" 2> ruff_stderr.txt)
@@ -158,14 +167,17 @@ jobs:
               # Display the raw output in the step
               echo "${out}"
               # Display the Markdown output in the job summary
+              echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
               echo "${out}" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
             fi
             if [[ -n "$err" ]]; then
               echo "${err}"
+              echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
               echo "${err}" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
             fi
           done
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
           # Exit with the first non-zero exit-code returned by ruff
           # or just zero if all passed

@@ -1,6 +1,5 @@
 import pytest
-
-from zproject.utils import TwoNumbers
+from mlproject.utils import TwoNumbers
 
 
 def test_zero_zero(zero_zero):

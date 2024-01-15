@@ -3,16 +3,19 @@ site_url: 'https://python-project-template-docs-kiyoon-374453f33ef5ecc2d8bcdf2f6
 repo_url: 'https://github.com/kiyoon/python-project-template-2023'
 copyright: |
   &copy; 2024 <a href="https://kiyoon.kim"  target="_blank" rel="noopener">Kiyoon Kim</a>
-watch: [mkdocs.yml, README.md, src/]
+watch: [mkdocs.yml, README.md, CHANGELOG.md, src/]
 validation:
   omitted_files: warn
   absolute_links: warn
   unrecognized_links: warn
 
 nav:
-  - MkDocs: index.md
-  - Changelog: changelog.md
-  - zproject: zproject.md
+  - Home:
+      - Overview: readme.md
+      - Changelog: changelog.md
+  - MkDocs:
+      - 미리보기: mkdocs.md
+      - 파이썬 referencing: mkdocstrings.md
   # defer to gen-files + literate-nav
   - API reference:
       - mkdocstrings-python: reference/
@@ -22,8 +25,14 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    - toc.integrate
+    - toc.follow
     - navigation.top
+    - navigation.footer
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.path
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -58,8 +67,6 @@ plugins:
       handlers:
         python:
           paths: [src] # search packages in the src folder
-          options:
-            show_submodules: true
 
 extra:
   social:

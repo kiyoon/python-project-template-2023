@@ -1,6 +1,5 @@
 import pytest
-
-from zproject.utils import TwoNumbers
+from mlproject.utils import TwoNumbers
 
 
 @pytest.fixture(scope="session")

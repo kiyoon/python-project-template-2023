@@ -6,9 +6,8 @@ install()
 import logging
 import os
 
+import mlproject
 from rich.logging import RichHandler
-
-import zproject
 
 # 옵션으로 `from accelerate.logging import get_logger`
 # 사용하시면 로깅할 때 main_process_only=False, in_order=True 등 옵션 사용 가능합니다
@@ -66,7 +65,7 @@ if __name__ == "__main__":
     root_logger.addHandler(f_handler)
 
     try:
-        logger.info(f"zproject {zproject.__version__}")
+        logger.info(f"mlproject {mlproject.__version__}")
         main()
         logger.info("💖 Successfully completed!")
     except Exception:

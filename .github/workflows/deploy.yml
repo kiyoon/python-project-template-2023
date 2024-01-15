@@ -34,7 +34,7 @@ jobs:
           git push origin --delete ${{ github.ref_name }}
           git add CHANGELOG.md
           git commit -m "docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]"
-          git tag -a ${{ github.ref_name }}
+          git tag -a ${{ github.ref_name }} -m ${{ github.ref_name }}
           git push --all
 
       - name: Create Release

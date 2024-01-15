@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
 
       - name: Checkout to the branch of the tag
         run: |

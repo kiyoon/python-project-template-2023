@@ -15,7 +15,7 @@ jobs:
         run: |
           # checkout from GitHub CI without using actions/checkout
           git clone https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git .
-          git pull origin ${{ github.ref_name }}
+          git fetch origin ${{ github.ref_name }}
 
           # check if git tag is the last commit of some branch
           TAG=${{ github.ref_name }}
@@ -52,6 +52,7 @@ jobs:
           git add CHANGELOG.md
           git commit -m "docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]"
           git tag -a ${{ github.ref_name }} -m ${{ github.ref_name }}
+          git push
           git push --tags
 
       - name: Create Release

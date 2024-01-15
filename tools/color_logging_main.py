@@ -44,6 +44,7 @@ if __name__ == "__main__":
         show_time=True,
         show_level=True,
         show_path=True,
+        rich_tracebacks=True,
     )
     console_format = logging.Formatter(
         fmt="%(name)s - %(message)s",

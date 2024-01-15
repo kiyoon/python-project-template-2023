@@ -18,8 +18,8 @@ jobs:
         run: |
           # check if git tag is the last commit of some branch
           TAG=${{ github.ref_name }}
-          git branch --contains $TAG
-          BRANCH=$(git branch --contains $TAG | grep -v HEAD | head -n 1 | sed 's/^* //' | sed 's/^  //')
+          git branch -a --contains $TAG
+          BRANCH=$(git branch -a --contains $TAG | grep -v HEAD | head -n 1 | sed 's/^* //' | sed 's/^  //')
           echo "branch: $BRANCH"
           LAST_COMMIT=$(git rev-parse $BRANCH)
           echo "last commit hash: $LAST_COMMIT"

@@ -29,7 +29,8 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git tag -d ${{ github.ref_name }}
+          # There is no local tag because we checked out the default branch
+          # git tag -d ${{ github.ref_name }}
           git push origin --delete ${{ github.ref_name }}
           git add CHANGELOG.md
           git commit -m "docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]"

@@ -82,6 +82,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git remote add gitlab "$HTTPS_REMOTE"
+          git branch -D gl-pages
           git pull gitlab gl-pages:gl-pages
 
           # Delete the latest page because we're going to make it as an alias to the latest version.

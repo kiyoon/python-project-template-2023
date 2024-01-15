@@ -11,13 +11,11 @@ jobs:
     environment: mkdocs
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Checkout to the branch of the tag
         run: |
+          # checkout from GitHub CI without using actions/checkout
+          git clone ${{ github.repository }} ${{ GITHUB_WORKSPACE }}
+
           # check if git tag is the last commit of some branch
           TAG=${{ github.ref_name }}
           git branch -a --contains $TAG
@@ -53,8 +51,7 @@ jobs:
           git add CHANGELOG.md
           git commit -m "docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]"
           git tag -a ${{ github.ref_name }} -m ${{ github.ref_name }}
-          git push origin ${{ github.ref_name }}
-          git push
+          git push --tags
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0

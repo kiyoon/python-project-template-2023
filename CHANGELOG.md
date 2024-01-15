@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.14] - 2024-01-15
+### :bug: Bug Fixes
+- [`d275834`](https://github.com/kiyoon/python-project-template-2023/commit/d2758343ed42f1d15597740207bd4be38dfa0760) - ci *(commit by [@kiyoon](https://github.com/kiyoon))*
+
+
 ## [v0.1.12] - 2024-01-15
 ### :bug: Bug Fixes
 - [`70389d3`](https://github.com/kiyoon/python-project-template-2023/commit/70389d3388d442da0e66bb88b10519f4b72927d6) - ci *(commit by [@kiyoon](https://github.com/kiyoon))*
@@ -22,3 +27,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.0]: https://github.com/kiyoon/python-project-template-2023/compare/v0.0.0...v0.1.0
 [v0.1.12]: https://github.com/kiyoon/python-project-template-2023/compare/v0.1.11...v0.1.12
+[v0.1.14]: https://github.com/kiyoon/python-project-template-2023/compare/v0.1.13...v0.1.14

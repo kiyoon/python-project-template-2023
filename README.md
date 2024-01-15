@@ -9,6 +9,8 @@
 
 [![Actions status](https://github.com/kiyoon/python-project-template-2023/workflows/Tests/badge.svg)](https://github.com/kiyoon/python-project-template-2023/actions)
 
+[![Actions status](https://github.com/kiyoon/python-project-template-2023/workflows/Deploy docs/badge.svg)](https://github.com/kiyoon/python-project-template-2023/actions)
+
 새 파이썬 프로젝트 시작할 때 사용하실 템플릿입니다.
 
 노션: https://www.notion.so/Z-Python-Project-Packaging-c9d8b9824a5243929adce03f8091cd16?pvs=4

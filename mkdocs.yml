@@ -1,5 +1,13 @@
 site_name: My Docs
+site_url: 'https://python-project-template-docs-kiyoon-374453f33ef5ecc2d8bcdf2f633.gitlab.io/'
+repo_url: 'https://github.com/kiyoon/python-project-template-2023'
+copyright: |
+  &copy; 2024 <a href="https://kiyoon.kim"  target="_blank" rel="noopener">Kiyoon Kim</a>
 watch: [mkdocs.yml, README.md, src/]
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
 
 nav:
   - MkDocs: index.md
@@ -76,6 +84,3 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-
-copyright: |
-  &copy; 2024 <a href="https://kiyoon.kim"  target="_blank" rel="noopener">Kiyoon Kim</a>

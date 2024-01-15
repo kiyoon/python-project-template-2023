@@ -14,7 +14,7 @@ jobs:
       - name: Checkout to the branch of the tag
         run: |
           # checkout from GitHub CI without using actions/checkout
-          git clone ${{ github.repository }} ${{ github.workspace }}
+          git clone https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.workspace }}
 
           # check if git tag is the last commit of some branch
           TAG=${{ github.ref_name }}

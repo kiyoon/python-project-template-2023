@@ -57,6 +57,8 @@ jobs:
           git remote add gitlab "$HTTPS_REMOTE"
           git pull gitlab gl-pages:gl-pages
 
+          # Delete the latest page because we're going to make it as an alias to the latest version.
+          mike delete --deploy-prefix public -r $HTTPS_REMOTE -b gl-pages latest
           out=$(mike deploy --deploy-prefix public -r $HTTPS_REMOTE -p -b gl-pages -u ${{ github.ref_name }} latest 2> stderr.txt)
           exit_code=$?
           err=$(<stderr.txt)

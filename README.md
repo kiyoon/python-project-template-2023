@@ -13,12 +13,12 @@
 
 새 파이썬 프로젝트 시작할 때 사용하실 템플릿입니다.
 
-노션: https://www.notion.so/Z-Python-Project-Packaging-c9d8b9824a5243929adce03f8091cd16?pvs=4
-
 **주요 기능**
 
 1. Github Actions로 black (formatter), isort (formatter), ruff (linter), pytest (unit test) 통과 여부 확인
 2. pytest 커맨드로 유닛 테스트 사용 가능
+3. MkDocs 이용해 자동 document 생성
+  a. GitLab Pages 이용 (GitHub Pages는 Private repo일 경우 유료인 문제가 있음)
 
 ## 돌려 보기
 

@@ -28,6 +28,9 @@ jobs:
           export GL_PROJECT=kiyoon/python-project-template-docs
           export HTTPS_REMOTE="https://gitlab-ci-token:${{ secrets.GL_TOKEN }}@gitlab.com/$GL_PROJECT.git"
 
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
           out=$(mike deploy --deploy-prefix public -r $HTTPS_REMOTE -p -b gl-pages -u latest 2> stderr.txt)
           exit_code=$?
           err=$(<stderr.txt)

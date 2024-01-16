@@ -4,7 +4,8 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 
-* `mkdocs serve` - Start the live-reloading docs server.
+* `pip install -r requirements_docs.txt` - mkdocs 및 플러그인 설치
+* `mkdocs serve` - 문서 미리보기 (수정 사항 즉시 반영)
 
 ## Project layout
 

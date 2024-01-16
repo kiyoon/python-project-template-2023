@@ -20,5 +20,5 @@ for module_name in modules:
     result = doctest.testmod(module, verbose=True)
     if result.failed > 0:
         print("doctest failed for module: " + module_name)
-        print(f"{result.failed} failed")
+        print(f"{result.failed} failed out of {result.attempted} tests")
         exit(1)
